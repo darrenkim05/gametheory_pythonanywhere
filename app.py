@@ -22,7 +22,7 @@ Session(app)
 # Configure CS50 Library to use SQLite database
 
 basedir = os.path.abspath(os.path.dirname(__file__))
-db = SQL("sqlite:////home/darrenkim05/mysite/gametheory/finance.db")
+db = SQL("sqlite:////home/darrenkim05/mysite/gametheory_pythonanywhere/finance.db")
 STRATEGY_DESCRIPTIONS = {row["name"]: row["description"] for row in db.execute("SELECT * FROM strategy_explanations")}
 
 @app.after_request
