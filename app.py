@@ -202,10 +202,15 @@ def insights():
 def highscores():
     scores = db.execute(
         """
-        SELECT users.username, MAX(session_scores.total_score) AS high_score
+        SELECT users.username,
+               MAX(session_scores.total_score) AS high_score,
+               session_scores.opponents
         FROM users
         JOIN (
-            SELECT user_id, timestamp, SUM(user_score) AS total_score
+            SELECT user_id,
+                   timestamp,
+                   SUM(user_score) AS total_score,
+                   GROUP_CONCAT(opponent, ', ') AS opponents
             FROM games
             GROUP BY user_id, timestamp
         ) AS session_scores ON users.id = session_scores.user_id
