@@ -1,0 +1,76 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Play
+{% endblock %}
+
+{% block main %}
+<div class="container">
+    <h2>Axelrod Tournament: Player #{{ game.current_opponent_index + 1 }}</h2>
+    <p>Round {{ game.round }} of 25</p>
+    <p>Your Score: {{ game.user_score }} | Opponent Score: {{ game.ai_score }}</p>
+
+    {% if game.round > 25 %}
+        <form action="/play" method="post">
+            <input type="hidden" name="move" value="C">
+            <button type="submit" class="btn btn-primary btn-lg m-2">Next Opponent</button>
+        </form>
+    {% else %}
+        <form action="/play" method="post">
+            <button type="submit" name="move" value="C" class="btn btn-success btn-lg m-2">Cooperate</button>
+            <button type="submit" name="move" value="D" class="btn btn-danger btn-lg m-2">Defect</button>
+        </form>
+    {% endif %}
+
+    {% if game.round <= 25 and game.round_history %}
+    <hr>
+    <h5>Current Player Rounds:</h5>
+    <table class="table table-bordered table-sm mx-auto" style="max-width: 500px;">
+        <thead class="table-light">
+            <tr>
+                <th>Round</th>
+                <th>You</th>
+                <th>Opponent</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for round_num, user, ai in game.round_history %}
+            <tr>
+                <td>{{ round_num }}</td>
+                <td>{{ user }}</td>
+                <td>{{ ai }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+    
+    {% if game.results %}
+    <hr>
+    <h5>Cumulative Scores (Previous Players)</h5>
+    <table class="table table-bordered table-sm mx-auto" style="max-width: 500px;">
+        <thead class ="table-light">
+            <tr>
+                <td>Player #</td>
+                <td>Your Score</td>
+                <td>AI Score</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for result in game.results %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ result.user_score }}</td>
+                <td>{{ result.ai_score }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    {% endif %}
+    
+    <form action="/clear" method="post">
+        <button type="submit" class="btn btn-outline-danger btn-sm mt-4">Clear Game</button>
+    </form>
+</div>
+{% endblock %}

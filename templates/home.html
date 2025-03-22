@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    home 
+{% endblock %}
+
+{% block main %}
+    <div class="homepage-container">
+        <h1>Welcome to My CS50 Final Project</h1>
+        <p>
+            For this project, I was inspired by <strong>Robert Axelrod’s famous tournaments</strong> on the Iterated Prisoner’s Dilemma —
+            a foundational study in game theory. His work explored how cooperation could emerge in competitive environments,
+            and I wanted to recreate and explore the system through code.
+        </p>
+        <p>
+            In this interactive simulation, you'll play a <strong>single-player tournament</strong> where you face off against various AI opponents.
+            Each opponent uses a different strategy inspired by Axelrod’s original paper. In each match, you will play 25 rounds and choose
+            to either <em>cooperate</em> or <em>defect</em>. Your goal? Maximize your total score by understanding and adapting to each opponent’s behavior.
+        </p>
+        <p>
+            This project is designed to help you <strong>learn by doing</strong> — to experience firsthand the dynamics that made Axelrod’s research so influential.
+        </p>
+        <p>
+            Made by Darren Kim.
+        </p>
+        <a href="/play" class="start-button">Start Playing</a>
+    </div>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Highscores
+{% endblock %}
+
+{% block main %}
+<div class="container mt-4">
+    <h2>🏆 High Scores</h2>
+    {% if scores %}
+    <table class="table table-bordered table-hover mt-3">
+        <thead class="table-light">
+            <tr>
+                <th>Username</th>
+                <th>Highest Score</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in scores %}
+            <tr>
+                <td>{{ row.username }}</td>
+                <td>{{ row.high_score }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>No scores available yet. Be the first to complete a game!</p>
+    {% endif %}
+</div>
+{% endblock %}

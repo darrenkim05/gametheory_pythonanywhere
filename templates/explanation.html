@@ -1,0 +1,86 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    home 
+{% endblock %}
+
+{% block main %}
+    <div class="how-to-play">
+        <h2>How to Play</h2>
+        <p>
+            In this game, you’ll participate in a <strong>tournament</strong> modeled after Robert Axelrod’s studies on the Iterated Prisoner’s Dilemma —
+            a classic scenario in game theory where you repeatedly choose between two actions:
+        </p>
+        <ul>
+            <li><strong>Cooperate (C)</strong> – Help both players earn moderate points.</li>
+            <li><strong>Defect (D)</strong> – Try to earn more for yourself, at the risk of harming both.</li>
+        </ul>
+        <p>
+            Each round, you and an AI opponent will simultaneously choose to cooperate or defect.
+            Your choices determine the score using the following payoff matrix:
+        </p>
+        <table class="table table-bordered" style="max-width: 600px;">
+            <thead>
+                <tr>
+                    <th>You</th>
+                    <th>Opponent</th>
+                    <th>Your Score</th>
+                    <th>Opponent Score</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>C</td><td>C</td><td>3</td><td>3</td></tr>
+                <tr><td>C</td><td>D</td><td>0</td><td>5</td></tr>
+                <tr><td>D</td><td>C</td><td>5</td><td>0</td></tr>
+                <tr><td>D</td><td>D</td><td>1</td><td>1</td></tr>
+            </tbody>
+        </table>
+        <p>
+            You’ll face off against several opponents across 25 rounds each. Every opponent follows a different strategy — some kind, some ruthless, and some unpredictable.
+            Your challenge: <strong>observe their behavior and adapt</strong> to score as highly as possible.
+        </p>
+    </div>
+    
+    <hr>
+    
+    <div class="strategy-list">
+        <h2>Strategy Descriptions</h2>
+        <ul>
+            <li><strong>Always Cooperate:</strong> Always plays "cooperate."</li>
+            <li><strong>Always Defect:</strong> Always plays "defect."</li>
+            <li><strong>Tit for Tat:</strong> Cooperates first, then copies opponent’s last move.</li>
+            <li><strong>Grudger:</strong> Cooperates until the opponent defects, then always defects.</li>
+            <li><strong>Random:</strong> Randomly cooperates or defects each round.</li>
+            <li><strong>Grim Trigger:</strong> Cooperates until opponent defects, then defects forever.</li>
+            <li><strong>Tit for Two Tats:</strong> Defects only if opponent defects two times in a row.</li>
+            <li><strong>Pavlov:</strong> Repeats move if last round matched, switches otherwise.</li>
+            <li><strong>Suspicious Tit for Tat:</strong> Starts by defecting, then mimics opponent.</li>
+            <li><strong>Generous Tit for Tat:</strong> Like Tit for Tat but occasionally forgives.</li>
+            <li><strong>Prober:</strong> Tests with early defection, then plays Tit for Tat unless punished.</li>
+            <li><strong>Joss:</strong> Tit for Tat with random 10% betrayals.</li>
+            <li><strong>Spiteful:</strong> Defects for 3 rounds after a defection, then forgives.</li>
+            <li><strong>Hit and Run:</strong> Defects for 5 rounds, then cooperates forever.</li>
+            <li><strong>Tricky Alternator:</strong> Alternates moves, punishes predictable cooperation.</li>
+            <li><strong>Two Timer:</strong> Defects every third round.</li>
+            <li><strong>Anti-Tit for Tat:</strong> Does the opposite of opponent’s last move.</li>
+            <li><strong>Cycle Breaker:</strong> Detects and breaks predictable patterns.</li>
+            <li><strong>Stubborn Defector:</strong> Defects 10 rounds, cooperates only if opponent never defects.</li>
+            <li><strong>Disloyal Friend:</strong> Tit for Tat with random betrayal every 5 rounds.</li>
+            <li><strong>Mirror Mirror:</strong> Always does the opposite of its own last move.</li>
+            <li><strong>People Pleaser:</strong> Cooperates unless opponent defects twice in a row.</li>
+            <li><strong>Opportunist:</strong> Betrays after opponent cooperates multiple times in a row.</li>
+            <li><strong>Guilt Tripper:</strong> Defects twice in response to a defection, then forgives.</li>
+            <li><strong>Slow Learner:</strong> Cooperates 10 rounds, then copies opponent's majority behavior.</li>
+            <li><strong>Backstabber:</strong> Tit for Tat with occasional surprise betrayals.</li>
+            <li><strong>Mirror Narcissist:</strong> Mimics opponent’s most frequent behavior.</li>
+            <li><strong>Flatterer:</strong> Copies then inverts opponent’s past move.</li>
+            <li><strong>Standoffish:</strong> Cooperates only every 3rd round.</li>
+            <li><strong>Detective:</strong> Starts with test pattern, then chooses a strategy.</li>
+            <li><strong>Peacemaker:</strong> Defects only if opponent defects 3 times, never overreacts.</li>
+        </ul>
+    </div>
+    
+    <div class="homepage-container">
+        <a href="/play" class="start-button">Start Playing</a>
+    </div>
+{% endblock %}

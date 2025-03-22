@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Results
+{% endblock %}
+
+{% block main %}
+<div class="container">
+    <h2 class="mb-4">Game Results</h2>
+
+    <h4 class ="mt-4">Total Score: {{ total_score }}</h4>
+
+    {% for match in results %}
+        
+        <div class="card mb-4">
+            <div class="card-header">
+                <strong>{{ match.opponent.replace("_", " ").title() }}</strong>
+            </div>
+            <div class="card-body">
+                <p><strong>Your Score:</strong> {{ match.user_score }}<br>
+                   <strong>AI Score:</strong> {{ match.ai_score }}</p>
+                {% if match.opponent in strategy_descriptions %}
+                    <p><strong>Strategy Explanation:</strong> {{ strategy_descriptions[match.opponent] }}</p>
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+
+    <a href="/play" class="btn btn-primary">Play Again</a>
+</div>
+{% endblock %}
